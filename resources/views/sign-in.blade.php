@@ -32,7 +32,7 @@
             @csrf
 
 
-            <h2 class="text-2xl text-center font-normal mb-6 text-90">Two factor authentication</h2>
+            <h2 class="text-2xl text-center font-normal mb-6 text-90">Two Factor Authentication</h2>
             <svg class="block mx-auto mb-6" xmlns="http://www.w3.org/2000/svg" width="100" height="2" viewBox="0 0 100 2">
                 <path fill="#D8E3EC" d="M0 0h100v2H0z"></path>
             </svg>
@@ -42,7 +42,7 @@
             </p>
             @endif
             <div class="mb-6 ">
-                <label class="block font-bold mb-2" for="password">One time password</label>
+                <label class="block font-bold mb-2" for="password">One Time Password</label>
                 <input onkeyup="checkAutoSubmit(this)" autofocus class="form-control form-input form-input-bordered w-full" id="password" type="number" name="one_time_password" required="">
             </div>
 
