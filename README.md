@@ -1,40 +1,34 @@
-# Nova-Two-Factor
-Laravel nova in-dashboard 2FA security feature
+# nova-two-factor
 
-1. pubish config & migration
+Forked from https://github.com/Visanduma/nova-two-factor
 
-`` php artisan vendor:publish --provider="Visanduma\NovaTwoFactor\ToolServiceProvider" ``
+It's almost identical to v1 of said repository (which is Nova 3 compatible), with a fix for local QR code generation and a few visual tweaks.
 
+1. Pubish config & migration
 
-Change configs as your needs
+`php artisan vendor:publish --provider="Visanduma\NovaTwoFactor\ToolServiceProvider"`
 
-``` 
-
+```
 return [
-
     'enabled' => env('NOVA_TWO_FA_ENABLE',true),
     'user_table' => 'users',
     'user_id_column' => 'id',
-    'user_model' => \App\Models\User::class
-
+    'user_model' => \App\Models\User::class,
+    '2fa_model' => \Visanduma\NovaTwoFactor\Models\TwoFa::class,
 ];
-
 ```
 
+2. Use ProtectWith2FA trait in User model
 
-2. use ProtectWith2FA trait in user model
+`use ProtectWith2FA`
 
-`` use ProtectWith2FA ``
+3. Add TwoFa middleware to Nova config file
 
-3. add TwoFa middleware to nova config file
+`\Visanduma\NovaTwoFactor\Http\Middleware\TwoFa::class`
 
+4. Register NovaTwoFactor tool in Nova Service Provider
 
-`` \Visanduma\NovaTwoFactor\Http\Middleware\TwoFa::class ``
+`new \Visanduma\NovaTwoFactor\NovaTwoFactor()`
 
-
-4. register NovaTwoFactor tool in Nova Service Provider
-
-`` new \Visanduma\NovaTwoFactor\NovaTwoFactor() ``
-
-5. run php artisan migrate
-6. You are done !
+5. Run `php artisan migrate`
+6. You are done!
