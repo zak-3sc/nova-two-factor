@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Visanduma\NovaTwoFactor;
 
 use Exception;
@@ -11,13 +10,14 @@ class TwoFaAuthenticator extends Authenticator
     protected function canPassWithoutCheckingOTP()
     {
         return
-            !$this->isEnabled() ||
+            ! $this->isEnabled() ||
             $this->noUserIsAuthenticated() ||
             $this->twoFactorAuthStillValid();
     }
 
     /**
      * @return mixed
+     *
      * @throws Exception
      */
     protected function getGoogle2FASecretKey()

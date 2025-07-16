@@ -28,14 +28,13 @@ class ToolServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
 
             $this->publishes([
-                __DIR__ . '/../config/nova-two-factor.php' => config_path('nova-two-factor.php'),
+                __DIR__.'/../config/nova-two-factor.php' => config_path('nova-two-factor.php'),
             ], 'nova-two-factor.config');
 
             $this->publishes([
-                __DIR__.'/../database/migrations/' => database_path('migrations')
+                __DIR__.'/../database/migrations/' => database_path('migrations'),
             ], 'migrations');
         }
-
 
         Nova::serving(function (ServingNova $event) {
             //
@@ -54,8 +53,8 @@ class ToolServiceProvider extends ServiceProvider
         }
 
         Route::middleware(['nova', Authorize::class])
-                ->prefix('nova-vendor/nova-two-factor')
-                ->group(__DIR__.'/../routes/api.php');
+            ->prefix('nova-vendor/nova-two-factor')
+            ->group(__DIR__.'/../routes/api.php');
     }
 
     /**
@@ -65,7 +64,7 @@ class ToolServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/nova-two-factor.php', 'nova-two-factor');
+        $this->mergeConfigFrom(__DIR__.'/../config/nova-two-factor.php', 'nova-two-factor');
 
     }
 }
